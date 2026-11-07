@@ -26,7 +26,9 @@ WORKDIR /app/backend
 COPY --from=build /app/backend/package.json ./
 COPY --from=build /app/backend/node_modules ./node_modules
 COPY --from=build /app/backend/dist ./dist
-RUN mkdir -p uploads && chown -R node:node /app
+# The app only writes to uploads/. Changing the owner of anything else would
+# copy every file into a new image layer.
+RUN mkdir -p uploads && chown node:node uploads
 
 ENV NODE_ENV=production \
   PORT=5000 \
