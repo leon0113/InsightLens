@@ -185,6 +185,12 @@ never in objects keyed by column name. A CSV header such as `price.usd` or
 - **Rendering.** Next.js prerenders the landing page and the demo pages as
   static HTML. Everything that depends on the signed-in user is fetched in the
   browser with TanStack Query, because the access token only exists there.
+- **One origin.** The browser sends API requests to `/api/v1` on the
+  frontend's own host, and a Next.js rewrite forwards them to the Express API
+  (`BACKEND_URL`). The refresh cookie is therefore first-party even when the
+  two apps run on different hosts, which browsers that block third-party
+  cookies require, and no CORS is needed. The forwarding buffers request
+  bodies, so its limit is raised to 52 MB to fit a 50 MB upload.
 - **One API module.** `src/lib/api/client.ts` is the only code that calls the
   API. It owns the token, the refresh, error messages and upload progress
   (through `XMLHttpRequest`, since `fetch` cannot report upload progress).

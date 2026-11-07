@@ -11,8 +11,10 @@ npm install
 npm run dev
 ```
 
-The app runs on http://localhost:3000 and expects the API from `backend/` at
-`NEXT_PUBLIC_API_URL`.
+The app runs on http://localhost:3000. The browser sends every API request to
+`/api/v1` on this same origin, and Next.js forwards it to the Express API at
+`BACKEND_URL` (see `next.config.ts`). The URL is read at build time, so
+rebuild after changing it.
 
 ## Scripts
 

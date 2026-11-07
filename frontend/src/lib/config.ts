@@ -1,11 +1,4 @@
-// NEXT_PUBLIC_ variables are inlined at build time, so they must be read with
-// their full literal name.
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-if (!apiUrl) {
-  throw new Error('Missing environment variable: NEXT_PUBLIC_API_URL');
-}
-
-export const API_URL = apiUrl.replace(/\/$/, '');
+// Same-origin path; next.config.ts forwards it to the Express API.
+export const API_BASE = '/api/v1';
 
 export const MAX_UPLOAD_BYTES = 50 * 1024 * 1024;

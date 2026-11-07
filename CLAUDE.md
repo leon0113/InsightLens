@@ -88,7 +88,10 @@ insightlens/
   (analysis-engine/.venv). PYTHON_BIN in backend/.env points to that venv's
   Python executable, e.g. ../analysis-engine/.venv/Scripts/python.exe
 - Each of frontend/ and backend/ has its own package.json and .env.example.
-- Do not add Docker or docker-compose.
+- Do not add Docker or docker-compose for local development.
+- Exception, decided for hosting: backend/Dockerfile and frontend/Dockerfile
+  build the production images for my Coolify server. They are deployment
+  only; local development stays Docker-free.
 
 ## Backend (backend/)
 
@@ -209,7 +212,8 @@ servers), sample datasets (state they are synthetic), limitations, next steps.
 
 ## Do not
 
-- Do not add Docker, an LLM, a queue system, or extra services
+- Do not add an LLM, a queue system, or extra services, or Docker beyond the
+  two deployment Dockerfiles
 - Do not store uploaded CSV files after analysis
 - Do not put analysis logic in Node or React; Python computes, Node stores and
   serves, React displays

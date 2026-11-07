@@ -1,4 +1,4 @@
-import { API_URL } from '@/lib/config';
+import { API_BASE } from '@/lib/config';
 import type {
   ApiResponse,
   Dataset,
@@ -49,7 +49,7 @@ export function hasAccessToken() {
 // one shared refresh instead of each starting their own.
 function refreshAccessToken(): Promise<string | null> {
   if (!refreshing) {
-    refreshing = fetch(`${API_URL}/auth/refresh-token`, {
+    refreshing = fetch(`${API_BASE}/auth/refresh-token`, {
       method: 'POST',
       credentials: 'include',
     })
@@ -89,7 +89,7 @@ type RequestOptions = {
 };
 
 function buildUrl(path: string, query?: RequestOptions['query']) {
-  const url = new URL(`${API_URL}${path}`);
+  const url = new URL(`${API_BASE}${path}`, window.location.origin);
   for (const [key, value] of Object.entries(query ?? {})) {
     if (value !== undefined && value !== '') {
       url.searchParams.set(key, String(value));
@@ -139,7 +139,7 @@ function postFile(
   // fetch cannot report upload progress, so file uploads use XMLHttpRequest.
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', `${API_URL}${path}`);
+    xhr.open('POST', `${API_BASE}${path}`);
     xhr.withCredentials = true;
     if (accessToken) {
       xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`);

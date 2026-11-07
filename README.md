@@ -178,6 +178,18 @@ npm run dev
 Open http://localhost:3000. The demo reports work without an account; create
 one to upload your own files.
 
+The browser only talks to the frontend: requests to `/api/v1` are forwarded
+by Next.js to the API at `BACKEND_URL` (in `frontend\.env.local`). This keeps
+the refresh cookie first-party when the two apps run on different hosts.
+
+### Deployment
+
+`backend/Dockerfile` (built from the repository root, since the API also
+needs the engine and the sample data) and `frontend/Dockerfile` produce the
+two production images. Set `BACKEND_URL` as a build variable for the
+frontend, and the backend's variables from `backend/.env.example`; the
+Dockerfile already sets the Linux Python paths.
+
 ### Tests and checks
 
 | Where | Command | What it covers |
