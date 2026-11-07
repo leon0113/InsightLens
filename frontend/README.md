@@ -3,6 +3,8 @@
 Next.js (App Router) client for InsightLens. See the root README for the full
 setup.
 
+Live: https://insightlens.144.126.147.89.sslip.io
+
 ## Run (cmd)
 
 ```bat

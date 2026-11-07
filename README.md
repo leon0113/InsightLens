@@ -4,6 +4,16 @@ Upload a CSV and get an exploratory data analysis report: a profile of every
 column, missing values, distributions, correlations and plain-language
 insights, each with the numbers behind it.
 
+**Live app:** https://insightlens.144.126.147.89.sslip.io
+
+**Demo reports, no account needed:**
+[E-commerce orders](https://insightlens.144.126.147.89.sslip.io/demo/ecommerce-orders) ·
+[Clinic appointments](https://insightlens.144.126.147.89.sslip.io/demo/clinic-appointments) ·
+[Sensor readings](https://insightlens.144.126.147.89.sslip.io/demo/sensor-readings)
+
+The app runs on a small self-hosted server, so the first page can take a few
+seconds to load.
+
 ![Report overview for the clinic appointments demo](docs/screenshots/report-overview.png)
 
 InsightLens is a portfolio project that combines a full stack web app
@@ -189,6 +199,18 @@ needs the engine and the sample data) and `frontend/Dockerfile` produce the
 two production images. Set `BACKEND_URL` as a build variable for the
 frontend, and the backend's variables from `backend/.env.example`; the
 Dockerfile already sets the Linux Python paths.
+
+The live version runs this way on a VPS managed with
+[Coolify](https://coolify.io), with HTTPS certificates from Let's Encrypt:
+
+| Part | URL |
+|---|---|
+| Frontend | https://insightlens.144.126.147.89.sslip.io |
+| API | https://insightlens-api.144.126.147.89.sslip.io/api/v1 (for example [`/reports/demo`](https://insightlens-api.144.126.147.89.sslip.io/api/v1/reports/demo)) |
+
+The browser only calls the frontend's own domain; Next.js forwards `/api/v1`
+requests to the API. Production uses its own MongoDB database, separate from
+local development.
 
 ### Tests and checks
 
