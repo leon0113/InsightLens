@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Design tokens. Names follow shadcn/ui so its components pick them up:
+  primary is the petrol accent, accent is the subtle hover surface.
+  Severity colors only ever mean severity and stay separate from primary.
+*/
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-strong: var(--primary-strong);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-critical: var(--critical);
+  --color-critical-soft: var(--critical-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-negative: var(--chart-negative);
+  --color-chart-grid: var(--chart-grid);
+
+  --font-sans: var(--font-plex-sans), 'Segoe UI', system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), Consolas, ui-monospace, monospace;
+  --font-heading: var(--font-bricolage), 'Segoe UI', system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  --background: #f5f7f7;
+  --foreground: #0f1a1c;
+  --card: #ffffff;
+  --card-foreground: #0f1a1c;
+  --popover: #ffffff;
+  --popover-foreground: #0f1a1c;
+  --primary: #0b6e78;
+  --primary-foreground: #ffffff;
+  --primary-soft: #d7ecee;
+  --primary-strong: #08555d;
+  --secondary: #edf1f1;
+  --secondary-foreground: #0f1a1c;
+  --muted: #edf1f1;
+  --muted-foreground: #56676a;
+  --accent: #edf1f1;
+  --accent-foreground: #0f1a1c;
+  --destructive: #b42318;
+  --border: #dae1e2;
+  --input: #cfd8d9;
+  --ring: #0b6e78;
+
+  --critical: #b42318;
+  --critical-soft: #fdecea;
+  --warning: #a15c07;
+  --warning-soft: #fdf1de;
+  --info: #3d5a99;
+  --info-soft: #e6ecf8;
+
+  --chart-1: #0b6e78;
+  --chart-2: #5fa8af;
+  --chart-3: #a9d3d7;
+  --chart-4: #56676a;
+  --chart-5: #9aaaac;
+  --chart-6: #d3dcdd;
+  --chart-negative: #b9541a;
+  --chart-grid: #e6ecec;
+}
+
+.dark {
+  --background: #0b1113;
+  --foreground: #e5edee;
+  --card: #121a1c;
+  --card-foreground: #e5edee;
+  --popover: #121a1c;
+  --popover-foreground: #e5edee;
+  --primary: #4cc2c8;
+  --primary-foreground: #062326;
+  --primary-soft: #123a3d;
+  --primary-strong: #7ad6da;
+  --secondary: #182326;
+  --secondary-foreground: #e5edee;
+  --muted: #182326;
+  --muted-foreground: #93a4a7;
+  --accent: #182326;
+  --accent-foreground: #e5edee;
+  --destructive: #f4806f;
+  --border: #263438;
+  --input: #30413f;
+  --ring: #4cc2c8;
+
+  --critical: #f4806f;
+  --critical-soft: #3a1714;
+  --warning: #f2b54a;
+  --warning-soft: #33250c;
+  --info: #93aee6;
+  --info-soft: #18223a;
+
+  --chart-1: #4cc2c8;
+  --chart-2: #2e8a91;
+  --chart-3: #1d5a5f;
+  --chart-4: #93a4a7;
+  --chart-5: #5d6e71;
+  --chart-6: #34474b;
+  --chart-negative: #ee9a5e;
+  --chart-grid: #1d292c;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}

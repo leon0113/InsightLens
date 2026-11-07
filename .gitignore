@@ -1,0 +1,30 @@
+# frontend/ and backend/ have their own .gitignore files for their build
+# output, dependencies and env files. This file covers the rest of the repo.
+
+# Private interview notes, kept out of the repository
+PROJECT_WALKTHROUGH.md
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Reports written by hand while trying the engine (see analysis-engine/README.md)
+analysis-engine/report.json
+
+# Dependencies and env files, in case a tool runs from the root
+node_modules/
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
